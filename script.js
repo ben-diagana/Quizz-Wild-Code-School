@@ -45,11 +45,16 @@ function displayCorrectAnswer() {
     questions.forEach(question => {
         const questionDiv = document.getElementById(question.id)
         questionDiv.querySelectorAll('input').forEach(input => {
+            const label = input.nextElementSibling
+            if (input.value == question.correctAnswer) {
+                label.style.setProperty('font-weight', 'bold')
+            }
             if (input.checked) {
                 if (input.value == question.correctAnswer) {
                     questionDiv.classList.add('bg-success')
                 } else {
                     questionDiv.classList.add('bg-danger')
+                    label.style.setProperty('text-decoration', 'line-through')
                 }
             }
         })
@@ -86,11 +91,15 @@ function resetAnswers() {
     checkBoxes.forEach(cb => {
             cb.checked = false
         })
-        //initialise les background div
+        //initialise les background div et les font style
     questions.forEach(question => {
         const questionDiv = document.getElementById(question.id)
         questionDiv.classList.remove('bg-success')
         questionDiv.classList.remove('bg-danger')
+        questionDiv.querySelectorAll('label').forEach(label => {
+                label.style.setProperty('text-decoration', 'none')
+                label.style.setProperty('font-weight', 'initial')
+            })
             // show valid btn / hide rest btn
         showValid()
     })
@@ -110,6 +119,7 @@ questions.forEach(question => {
     questionDiv.id = question.id
         //adds styling class to the div
     questionDiv.classList.add('mb-3')
+    questionDiv.classList.add('p-2')
         // creates a h5 for question sentence
     const questionH5 = document.createElement('h5')
         // adds question sentence to h5
@@ -138,7 +148,7 @@ questions.forEach(question => {
         // adds answer sentence to the label
         answerLabel.textContent = answer
             // adds styling class
-        answerDiv.classList.add('d-inline')
+        answerDiv.classList.add('col-12');
         answerDiv.classList.add('px-3')
             // places input into answer div
         answerDiv.appendChild(answerRadioButton)

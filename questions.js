@@ -6,7 +6,7 @@
         },
         {
             id: 1,
-            question: "Lequel des éléments suivants est utilisé dans le Java script pour insérer des caractères spéciaux ?  ? ",
+            question: "Lequel des éléments suivants est utilisé en javascript pour insérer des caractères spéciaux ?",
             answers: [" :) ", " & ", " \\ ", " :p "],
             correctAnswer: 2
         },
